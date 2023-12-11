@@ -2,8 +2,10 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Storage;
 
 class Member extends Model
 {
@@ -18,4 +20,21 @@ class Member extends Model
         'town',
         'photo_path',
     ];
+
+    protected $appends = [
+        'fullname',
+        'photo_link',
+    ];
+
+    public function fullname(): Attribute
+    {
+        return Attribute::get(function () {
+            return trim("{$this->name} {$this->last_name}");
+        });
+    }
+
+    public function photoLink(): Attribute
+    {
+        return Attribute::get(fn () => Storage::url($this->photo_path));
+    }
 }

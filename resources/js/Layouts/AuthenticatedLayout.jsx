@@ -24,6 +24,9 @@ export default function Authenticated({ user, header, children }) {
                                 <NavLink href={route('members.create')} active={route().current('members.create')}>
                                     Nouveau Membre
                                 </NavLink>
+                                <NavLink href={route('members.index')} active={route().current('members.index')}>
+                                    Liste des membres
+                                </NavLink>
                             </div>
                         </div>
 
@@ -93,7 +96,10 @@ export default function Authenticated({ user, header, children }) {
                 <div className={(showingNavigationDropdown ? 'block' : 'hidden') + ' sm:hidden'}>
                     <div className="pt-2 pb-3 space-y-1">
                         <ResponsiveNavLink href={route('members.create')} active={route().current('members.create')}>
-                            Nouveau Member
+                            Nouveau membre
+                        </ResponsiveNavLink>
+                        <ResponsiveNavLink href={route('members.index')} active={route().current('members.index')}>
+                            Liste des membres
                         </ResponsiveNavLink>
                     </div>
 

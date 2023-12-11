@@ -31,7 +31,7 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware(['auth', 'verified'])->group(function () {
-    Route::resource('members', MemberController::class)->only(['create', 'store']);
+    Route::resource('members', MemberController::class)->only(['index', 'create', 'store']);
 });
 
 Route::middleware('auth')->group(function () {

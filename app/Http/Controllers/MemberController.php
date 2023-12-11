@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Member;
 use App\Http\Requests\StoreMemberRequest;
+use Illuminate\Support\Facades\Storage;
 use Inertia\Inertia;
 
 class MemberController extends Controller
@@ -13,7 +14,9 @@ class MemberController extends Controller
      */
     public function index()
     {
-        //
+        $members = Member::orderByDesc('created_at')->get();
+
+        return Inertia::render('Members/Index', compact('members'));
     }
 
     /**
@@ -31,7 +34,7 @@ class MemberController extends Controller
     {
         $request->handle();
 
-        return back();
+        return to_route('members.index');
     }
 
     /**
