@@ -1,5 +1,5 @@
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
-import { Head } from '@inertiajs/react';
+import { Head, Link } from '@inertiajs/react';
 
 export default function Index({ auth, members }) {
     const items = members.map(member => <Item member={member} key={member.id} />)
@@ -23,12 +23,12 @@ export default function Index({ auth, members }) {
 
 function Item({member}) {
     return (
-        <div className="flex items-center gap-4 p-4 bg-white hover:bg-indigo-200 overflow-hidden shadow-lg rounded-lg transition duration-150">
+        <Link href={route('members.show', [member.id])} className="flex items-center gap-4 p-4 bg-white hover:bg-indigo-200 overflow-hidden shadow-lg rounded-lg transition duration-150">
             <img src={member.photo_link} alt={`Photo de ${member.fullname}`} className="w-12 h-12 rounded-full" />
             <div>
                 <div className="text-lg font-semibold text-gray-900">{member.fullname}</div>
                 <div className="text-xs text-gray-700">{member.town}</div>
             </div>
-        </div>
+        </Link>
     )
 }
